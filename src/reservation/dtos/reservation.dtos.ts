@@ -1,6 +1,9 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsEmpty, IsNotEmpty } from 'class-validator';
 
 export class CreateReservationDto {
+
+  agentId: number;
+
   @IsNotEmpty()
   fromId: number;
 
@@ -13,7 +16,7 @@ export class CreateReservationDto {
   @IsNotEmpty()
   reservationDate: Date;
 
-  @IsNotEmpty()
+  @IsEmpty()
   price: number;
 
   @IsNotEmpty()
@@ -21,9 +24,37 @@ export class CreateReservationDto {
 
   @IsNotEmpty()
   passengerPhone: string;
+
+  @IsNotEmpty()
+  passengerEmail: string;
+
+  @IsNotEmpty()
+  passengerAdultsCount: number;
+
+  @IsNotEmpty()
+  passengerChildsCount: number;
+
+  passengerGender: string;
+
+  passengerBabyChair: number;
+
+  amplifier: number;
+
+  passengerPay: number;
+
+  driverNote: string;
+
+  operationNote: string;
+
+  flightNo: string;
+
+  passengerPayCurrency: string;
+
+  currency: string;
 }
 
 export class ReservationUpdateDto {
+  agentId: string;
   fromId: number;
   toId: number;
   carId: number;
@@ -31,6 +62,16 @@ export class ReservationUpdateDto {
   price: number;
   passengerName: string;
   passengerPhone: string;
+  passengerEmail: string;
+  passengerAdultsCount: number;
+  passengerChildsCount: number;
+  passengerGender: string;
+  passengerBabyChair: number;
+  amplifier: number;
+  passengerPay: number;
+  driverNote: string;
+  operationNote: string;
+  flightNo: string;
 }
 
 export class ReservationPriceDto {

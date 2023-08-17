@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { PriceService } from './price.service';
 import { PriceDto, UpdatePriceDto } from './dto/price.dtos';
@@ -22,6 +23,11 @@ export class PriceController {
   @Get()
   async getPrices() {
     return this.priceService.getPrices();
+  }
+
+  @Get('/list')
+  async getPriceListBySection(@Query('from') from: string, @Query('to') to: string) {
+    return this.priceService.getPriceListBySection(from, to)
   }
 
   @Get(':id')

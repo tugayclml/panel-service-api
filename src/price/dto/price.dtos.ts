@@ -12,6 +12,9 @@ export class PriceDto {
 
   @IsNotEmpty()
   price: number;
+
+  @IsNotEmpty()
+  agentId: number;
 }
 
 export class UpdatePriceDto {

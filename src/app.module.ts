@@ -13,6 +13,12 @@ import { Car } from './models/car.entity';
 import { PriceModule } from './price/price.module';
 import { Price } from './models/price.entity';
 import { Reservation } from './models/reservation.entity';
+import { Agent } from './models/agent.entity';
+import { AgentModule } from './agent/agent.module';
+import { EmployeeModule } from './employee/employee.module';
+import { Employee } from './models/employee.entity';
+import { ColorModule } from './color/color.module';
+import { Color } from './models/color.entity';
 
 @Module({
   imports: [
@@ -26,7 +32,7 @@ import { Reservation } from './models/reservation.entity';
         username: configService.get('DB_USERNAME_REMOTE'),
         password: configService.get('DB_PASSWORD_REMOTE'),
         database: configService.get('DB_NAME_REMOTE'),
-        entities: [User, Reservation, Section, Car, Price],
+        entities: [User, Reservation, Section, Car, Price, Agent, Employee, Color],
         synchronize: true,
       }),
       inject: [ConfigService],
@@ -36,6 +42,9 @@ import { Reservation } from './models/reservation.entity';
     SectionModule,
     CarModule,
     PriceModule,
+    AgentModule,
+    EmployeeModule,
+    ColorModule
   ],
   controllers: [AppController],
   providers: [AppService],

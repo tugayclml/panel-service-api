@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Price } from './price.entity';
 import { Reservation } from './reservation.entity';
+import { Employee } from './employee.entity';
 
 @Entity('cars')
 export class Car {
@@ -14,6 +15,15 @@ export class Car {
   model: string;
 
   @Column()
+  make: string;
+
+  @Column()
+  plate: string;
+
+  @Column()
+  year: string
+
+  @Column()
   numberOfPeople: number;
 
   @OneToMany(() => Price, (price) => price.car)
@@ -23,4 +33,7 @@ export class Car {
     nullable: true,
   })
   reservations: Reservation[];
+
+  @OneToMany(() => Employee, (employee) => employee.car, { cascade: true })
+  employees: Employee[]
 }

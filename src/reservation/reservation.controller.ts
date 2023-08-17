@@ -6,6 +6,7 @@ import {
   Post,
   Patch,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import {
@@ -13,21 +14,22 @@ import {
   ReservationPriceDto,
   ReservationUpdateDto,
 } from './dtos/reservation.dtos';
+import { Request } from 'express';
 
 @Controller('reservation')
 export class ReservationController {
   constructor(private readonly reservationService: ReservationService) {}
 
   @Post()
-  async createReservation(@Body() createReservationDto: CreateReservationDto) {
+  async createReservation(@Body() createReservationDto: CreateReservationDto, @Req() req: Request) {
     return await this.reservationService.createReservation(
-      createReservationDto,
+      createReservationDto, req
     );
   }
 
-  @Get()
-  async getReservations() {
-    return this.reservationService.getReservations();
+  @Get('/status/:status')
+  async getReservations(@Param('status') status: string) {
+    return this.reservationService.getReservationsByStatus(status);
   }
 
   @Get('/:id')

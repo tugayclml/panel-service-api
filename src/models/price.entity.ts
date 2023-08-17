@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Section } from './section.entity';
 import { Car } from './car.entity';
+import { Agent } from './agent.entity';
 
 @Entity('prices')
 export class Price {
@@ -22,4 +23,7 @@ export class Price {
 
   @Column()
   price: number;
+
+  @ManyToOne(() => Agent, (agent) => agent.prices)
+  agent: Agent
 }
