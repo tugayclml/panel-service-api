@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Reservation } from 'src/models/reservation.entity';
-import { Equal, Repository } from 'typeorm';
+import { Between, Equal, Repository } from 'typeorm';
 import {
   CreateReservationDto,
   ReservationPriceDto,
@@ -122,9 +122,11 @@ export class ReservationService {
     });
   }
 
-  async getReservationsByStatus(status: string) {
+  async getReservationsByStatus(status: string, query) {
     return await this.reservationRepository.find({
-      where: { status: status },
+      where: {
+        status: status,
+      },
       relations: {
         from: true,
         to: true,
@@ -144,6 +146,9 @@ export class ReservationService {
       },
     });
 
-    return { price: price.price };
+    if (price)
+      return { price: price.price };
+    else
+      return { price: 0 }
   }
 }

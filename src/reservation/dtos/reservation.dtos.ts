@@ -25,13 +25,10 @@ export class CreateReservationDto {
   @IsNotEmpty()
   passengerPhone: string;
 
-  @IsNotEmpty()
   passengerEmail: string;
 
-  @IsNotEmpty()
   passengerAdultsCount: number;
 
-  @IsNotEmpty()
   passengerChildsCount: number;
 
   passengerGender: string;

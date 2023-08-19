@@ -7,6 +7,7 @@ import {
   Patch,
   Delete,
   Req,
+  Query,
 } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import {
@@ -28,8 +29,8 @@ export class ReservationController {
   }
 
   @Get('/status/:status')
-  async getReservations(@Param('status') status: string) {
-    return this.reservationService.getReservationsByStatus(status);
+  async getReservations(@Param('status') status: string, @Query() query) {
+    return this.reservationService.getReservationsByStatus(status, query);
   }
 
   @Get('/:id')
